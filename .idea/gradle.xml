@@ -31,9 +31,15 @@
             <option value="$PROJECT_DIR$/core/localstorage" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/network" />
+            <option value="$PROJECT_DIR$/core/permission" />
+            <option value="$PROJECT_DIR$/core/service" />
+            <option value="$PROJECT_DIR$/core/work" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/forbidden" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/forbidden" />
             <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/presentation/home" />
             <option value="$PROJECT_DIR$/presentation/main" />
           </set>
         </option>

@@ -25,18 +25,29 @@ rootProject.name = "Kindl"
 include(":app")
 
 // core
-include(":core:designsystem")
-include(":core:common")
-include(":core:navigation")
-include(":core:network")
-include(":core:localstorage")
+include(
+    ":core:designsystem",
+    ":core:common",
+    ":core:navigation",
+    ":core:network",
+    ":core:localstorage",
+    ":core:permission",
+    ":core:service",
+    ":core:work"
+)
 
 // data
-include(":data")
+include(
+    ":data:forbidden"
+)
 
 // domain
-include(":domain")
+include(
+    ":domain:forbidden"
+)
 
 // presentation
-include(":presentation:main")
-
+include(
+    ":presentation:main",
+    ":presentation:home"
+)
