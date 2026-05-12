@@ -20,9 +20,9 @@ internal class MainAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
 ) {
-    /*val startDestination = Splash
+    val startDestination = "Splash"
 
-    val isOffline: StateFlow<Boolean> = networkMonitor.isOnline
+    /*val isOffline: StateFlow<Boolean> = networkMonitor.isOnline
         .map(Boolean::not)
         .stateIn(
             scope = coroutineScope,

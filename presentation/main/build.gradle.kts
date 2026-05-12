@@ -13,4 +13,6 @@ android {
 }
 
 dependencies {
+    //core
+    implementation(projects.core.permission)
 }

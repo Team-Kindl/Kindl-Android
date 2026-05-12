@@ -9,7 +9,11 @@ internal enum class MainTab(
     val route: MainTabRoute,
     val label: String,
 ) {
-    ;
+    HOME(
+        iconRes = com.kindl.core.designsystem.R.drawable.ic_home,
+        route = MainTabRoute.HOME,
+        label = "홈",
+    );
 
     companion object {
         fun find(predicate: (MainTabRoute) -> Boolean): MainTab? = entries.find { predicate(it.route) }
