@@ -33,10 +33,8 @@ internal fun MainBottomBar(
 ) {
     Column(
         modifier = Modifier
-            .background(KindlTheme.colors.white),
     ) {
         HorizontalDivider(
-            color = KindlTheme.colors.gray100,
             thickness = 1.dp,
         )
         Row(
@@ -76,20 +74,9 @@ private fun RowScope.MainBottomBarItem(
             imageVector = ImageVector.vectorResource(tab.iconRes),
             modifier = Modifier.size(24.dp),
             contentDescription = tab.label,
-            tint = if (selected) {
-                KindlTheme.colors.hilingualBlack
-            } else {
-                KindlTheme.colors.gray200
-            },
         )
         Text(
             text = tab.label,
-            color = if (selected) {
-                KindlTheme.colors.hilingualBlack
-            } else {
-                KindlTheme.colors.gray200
-            },
-            style = KindlTheme.typography.captionR12,
         )
     }
 }

@@ -1,7 +1,17 @@
 package com.kindl.presentation.main
 
 import MainViewModel
+import android.Manifest
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.widget.Toast
+import androidx.activity.compose.LocalActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
@@ -17,26 +27,36 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.app.ActivityCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
+import com.kindl.core.common.extension.collectSideEffect
 import com.kindl.core.common.model.DialogTrigger
 import com.kindl.core.common.model.GlobalUiEventHolder
 import com.kindl.core.common.model.SnackbarState
 import com.kindl.core.common.trigger.LocalGlobalUiEventTrigger
+import com.kindl.core.permission.PermissionType
+import com.kindl.presentation.home.navigation.homeNavGraph
 import com.kindl.presentation.main.component.MainBottomBar
 import com.kindl.presentation.main.state.MainAppState
+import com.kindl.presentation.main.state.MainSideEffect
 import com.kindl.presentation.main.state.rememberDialogStateHolder
 import com.kindl.presentation.main.state.rememberMainAppState
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import androidx.core.net.toUri
+import com.kindl.presentation.main.component.permission.PermissionScreen
 
+@SuppressLint("BatteryLife")
 @Composable
 internal fun MainScreen(
     appState: MainAppState = rememberMainAppState(),
     viewModel: MainViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
+    val activity = LocalActivity.current
     val scope = rememberCoroutineScope()
 
     val isBottomBarVisible by appState.isBottomBarVisible.collectAsStateWithLifecycle()
@@ -46,6 +66,21 @@ internal fun MainScreen(
 
     val snackBarHostState = remember { SnackbarHostState() }
     var currentSnackbarState by remember { mutableStateOf<SnackbarState?>(null) }
+
+    // POST_NOTIFICATIONS 런타임 권한 요청 런처
+    val notificationPermissionLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            viewModel.checkPermissions()
+        } else {
+            val isPermanentlyDenied = !ActivityCompat.shouldShowRequestPermissionRationale(
+                activity!!,
+                Manifest.permission.POST_NOTIFICATIONS,
+            )
+            viewModel.onNotificationPermissionDenied(isPermanentlyDenied)
+        }
+    }
 
     val onShowToast: (String) -> Unit = remember {
         { message ->
@@ -90,6 +125,57 @@ internal fun MainScreen(
         )
     }
 
+    viewModel.sideEffect.collectSideEffect {
+        when (it) {
+            is MainSideEffect.OpenSettings -> {
+                context.startActivity(it.intent)
+            }
+
+            else -> {
+
+            }
+        }
+    }
+
+    if (state.isPermissionCheckComplete && !state.hasPermissions) {
+        PermissionScreen(
+            missingPermissions = state.missingPermissions,
+            isPermanentlyDenied = state.isPermanentlyDenied,
+            notificationDeniedCount = state.notificationDeniedCount,
+            onRequestPermission = { type ->
+                when (type) {
+                    PermissionType.POST_NOTIFICATIONS -> {
+                        val neverRequested = state.notificationDeniedCount == 0
+                        val isPermanentlyDenied = !ActivityCompat.shouldShowRequestPermissionRationale(
+                            activity!!,
+                            Manifest.permission.POST_NOTIFICATIONS,
+                        )
+                        when {
+                            // 처음 요청
+                            neverRequested -> {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                    notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                }
+                            }
+                            // 영구 거절 → 설정으로
+                            isPermanentlyDenied -> viewModel.onOpenSettings(type)
+                            // 1회 거절 → 재요청
+                            else -> {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                    notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                                }
+                            }
+                        }
+                    }
+                    // 나머지는 항상 설정으로
+                    else -> viewModel.onOpenSettings(type)
+                }
+            },
+            onPermissionGranted = viewModel::checkPermissions,
+        )
+        return
+    }
+
     CompositionLocalProvider(
         LocalGlobalUiEventTrigger provides eventHolder,
     ) {
@@ -97,6 +183,7 @@ internal fun MainScreen(
             bottomBar = {
                 if (isBottomBarVisible == true) {
                     MainBottomBar(
+                        tabs = MainTab.entries.toImmutableList(),
                         currentTab = currentTab,
                         onTabSelected = appState::navigate,
                     )
@@ -133,7 +220,9 @@ internal fun MainScreen(
                     )
                 },
             ) {
-
+                homeNavGraph(
+                    paddingValues = paddingValues
+                )
             }
         }
     }

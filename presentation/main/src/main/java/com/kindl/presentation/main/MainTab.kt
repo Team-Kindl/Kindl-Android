@@ -3,6 +3,7 @@ package com.kindl.presentation.main
 import androidx.annotation.DrawableRes
 import com.kindl.core.navigation.MainTabRoute
 import com.kindl.core.navigation.Route
+import com.kindl.presentation.home.navigation.Home
 
 internal enum class MainTab(
     @param:DrawableRes val iconRes: Int,
@@ -10,8 +11,8 @@ internal enum class MainTab(
     val label: String,
 ) {
     HOME(
-        iconRes = com.kindl.core.designsystem.R.drawable.ic_home,
-        route = MainTabRoute.HOME,
+        iconRes = R.drawable.baseline_home_24,
+        route = Home,
         label = "홈",
     );
 

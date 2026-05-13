@@ -15,4 +15,8 @@ android {
 dependencies {
     //core
     implementation(projects.core.permission)
+    implementation(projects.core.localstorage)
+
+    //presentation
+    implementation(projects.presentation.home)
 }
