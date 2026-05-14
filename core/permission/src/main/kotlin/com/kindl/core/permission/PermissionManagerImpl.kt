@@ -2,14 +2,11 @@ package com.kindl.core.permission
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.provider.Settings
+import androidx.core.net.toUri
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import javax.inject.Singleton
-import androidx.core.net.toUri
 
-@Singleton
 internal class PermissionManagerImpl @Inject constructor(
     @param:ApplicationContext private val context: Context,
 ) : PermissionManager {
