@@ -51,6 +51,9 @@ dependencies {
     // core
     implementation(projects.core.network)
 
+    // data
+    implementation(projects.data.forbidden)
+
     // presentation
     implementation(projects.presentation.main)
 
