@@ -17,15 +17,15 @@ import com.kindl.presentation.home.model.ForbiddenAppUiModel
 
 @Composable
 internal fun ForbiddenAppItem(
-    item : ForbiddenAppUiModel,
+    item: ForbiddenAppUiModel,
     modifier: Modifier = Modifier
 ) {
-    Row (
+    Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         UrlImage(
-            url = item.appIcon,
+            url = item.icon,
             modifier = Modifier
                 .size(36.dp)
                 .clip(RoundedCornerShape(16.dp))
@@ -33,9 +33,7 @@ internal fun ForbiddenAppItem(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Text(
-            text = item.appName
-        )
+        Text(text = item.appName)
     }
 }
 
@@ -45,7 +43,7 @@ private fun ForbiddenAppItemPreview() {
     KindlTheme {
         ForbiddenAppItem(
             item = ForbiddenAppUiModel(
-                appIcon = "",
+                appPackageName = "",
                 appName = "test"
             )
         )

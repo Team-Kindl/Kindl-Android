@@ -41,17 +41,16 @@ private fun HomeScreen(
             .background(color = Color.White),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier.weight(1f),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             items(
                 count = state.forbiddenApps.size,
-                key = { index -> state.forbiddenApps[index].appName }
+                key = { index -> state.forbiddenApps[index].appPackageName },
+                contentType = { "forbidden_app" }
             ) { index ->
-                ForbiddenAppItem(
-                    item = state.forbiddenApps[index]
-                )
+                ForbiddenAppItem(item = state.forbiddenApps[index])
             }
         }
     }

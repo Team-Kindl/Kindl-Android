@@ -1,15 +1,11 @@
 package com.kindl.presentation.home.model
 
-import androidx.compose.runtime.Immutable
-import com.kindl.domain.forbidden.model.InstalledAppModel
+import android.graphics.drawable.Drawable
+import androidx.compose.runtime.Stable
 
-@Immutable
+@Stable
 data class ForbiddenAppUiModel(
-    val appIcon: String = "",
+    val appPackageName: String = "",
     val appName: String = "",
-)
-
-internal fun InstalledAppModel.toUiModel() = ForbiddenAppUiModel(
-    appIcon = packageName,
-    appName = appName
+    val icon: Drawable? = null,
 )

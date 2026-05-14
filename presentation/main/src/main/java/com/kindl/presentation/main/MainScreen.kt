@@ -1,13 +1,8 @@
 package com.kindl.presentation.main
 
-import MainViewModel
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
-import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.compose.LocalActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -39,6 +34,7 @@ import com.kindl.core.common.trigger.LocalGlobalUiEventTrigger
 import com.kindl.core.permission.PermissionType
 import com.kindl.presentation.home.navigation.homeNavGraph
 import com.kindl.presentation.main.component.MainBottomBar
+import com.kindl.presentation.main.component.permission.PermissionScreen
 import com.kindl.presentation.main.state.MainAppState
 import com.kindl.presentation.main.state.MainSideEffect
 import com.kindl.presentation.main.state.rememberDialogStateHolder
@@ -46,8 +42,6 @@ import com.kindl.presentation.main.state.rememberMainAppState
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import androidx.core.net.toUri
-import com.kindl.presentation.main.component.permission.PermissionScreen
 
 @SuppressLint("BatteryLife")
 @Composable

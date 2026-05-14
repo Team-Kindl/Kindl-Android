@@ -1,3 +1,5 @@
+package com.kindl.presentation.main
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.focpet.core.localstorage.permissions.PermissionInfoManager
