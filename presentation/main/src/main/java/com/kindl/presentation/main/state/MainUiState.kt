@@ -15,5 +15,5 @@ data class MainUiState(
 }
 
 sealed interface MainSideEffect {
-    data class OpenSettings(val intent: Intent) : MainSideEffect
+    data class OpenSettings(val intent: Intent?) : MainSideEffect
 }

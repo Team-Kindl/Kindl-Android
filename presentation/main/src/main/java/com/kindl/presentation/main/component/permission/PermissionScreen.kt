@@ -69,6 +69,7 @@ private fun PermissionItem(
         PermissionType.OVERLAY -> "다른 앱 위에 표시" to "집중 방해 시 경고창 표시에 필요해요"
         PermissionType.BATTERY_OPTIMIZATION -> "배터리 최적화 제외" to "백그라운드 감지를 위해 필요해요"
         PermissionType.POST_NOTIFICATIONS -> "알림 권한" to "집중 시간 알림을 위해 필요해요"
+        PermissionType.ACCESSIBILITY -> "접근 권한" to "앱 접근 시 필요해요"
     }
 
     val buttonText = when {

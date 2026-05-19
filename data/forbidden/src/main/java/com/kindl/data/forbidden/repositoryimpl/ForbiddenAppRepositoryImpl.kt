@@ -7,7 +7,7 @@ import com.kindl.domain.forbidden.repository.ForbiddenAppRepository
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ForbiddenAppRepositoryImpl @Inject constructor(
+internal class ForbiddenAppRepositoryImpl @Inject constructor(
     @param:ApplicationContext private val context: Context,
 ) : ForbiddenAppRepository {
     override fun getInstalledUserApps(): List<InstalledAppModel> {
