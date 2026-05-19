@@ -6,5 +6,5 @@ interface PermissionManager {
     fun check(type: PermissionType): Boolean
     fun allFocusPermissionsGranted(): Boolean
     fun missingFocusPermissions(): List<PermissionType>
-    fun openSettings(type: PermissionType) : Intent
+    fun openSettings(type: PermissionType) : Intent?
 }

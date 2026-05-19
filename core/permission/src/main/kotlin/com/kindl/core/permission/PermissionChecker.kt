@@ -1,7 +1,6 @@
 package com.kindl.core.permission
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.AppOpsManager
 import android.content.Context
 import android.content.pm.PackageManager
@@ -17,7 +16,6 @@ internal fun interface PermissionChecker {
         override fun isGranted(context: Context): Boolean {
             val appOps = context.getSystemService(Context.APP_OPS_SERVICE) as AppOpsManager
             val mode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                @Suppress("DEPRECATION")
                 appOps.unsafeCheckOpNoThrow(
                     AppOpsManager.OPSTR_GET_USAGE_STATS,
                     Process.myUid(),
@@ -40,7 +38,6 @@ internal fun interface PermissionChecker {
     }
 
     object BatteryOptimization : PermissionChecker {
-        @SuppressLint("ServiceCast")
         override fun isGranted(context: Context): Boolean {
             val pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
             return pm.isIgnoringBatteryOptimizations(context.packageName)
@@ -51,9 +48,31 @@ internal fun interface PermissionChecker {
         override fun isGranted(context: Context): Boolean =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) ==
-                    PackageManager.PERMISSION_GRANTED
+                        PackageManager.PERMISSION_GRANTED
             } else {
                 true
             }
+    }
+
+    object Accessibility : PermissionChecker {
+        override fun isGranted(context: Context): Boolean {
+            val enabledServices = Settings.Secure.getString(
+                context.contentResolver,
+                Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES,
+            ) ?: return false
+            return enabledServices.split(":")
+                .any { it.startsWith(context.packageName) }
+        }
+    }
+
+    companion object {
+        fun allGranted(context: Context): Boolean =
+            listOf(
+                UsageStats,
+                Overlay,
+                BatteryOptimization,
+                PostNotifications,
+                Accessibility,
+            ).all { it.isGranted(context) }
     }
 }

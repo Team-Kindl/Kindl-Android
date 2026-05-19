@@ -47,6 +47,9 @@ internal class PermissionManagerImpl @Inject constructor(
                 Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS).apply {
                     putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
                 }
+
+            PermissionType.ACCESSIBILITY ->
+                Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
         }.apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
