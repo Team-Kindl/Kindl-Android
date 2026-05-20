@@ -8,6 +8,7 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.kindl.presentation.home.navigation.Home
 import com.kindl.presentation.main.MainTab
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
@@ -20,9 +21,9 @@ internal class MainAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
 ) {
-    /*val startDestination = Splash
+    val startDestination = Home
 
-    val isOffline: StateFlow<Boolean> = networkMonitor.isOnline
+    /*val isOffline: StateFlow<Boolean> = networkMonitor.isOnline
         .map(Boolean::not)
         .stateIn(
             scope = coroutineScope,
@@ -81,9 +82,9 @@ internal class MainAppState(
             launchSingleTop
         }
 
-        /*when (tab) {
-
-        }*/
+        when (tab) {
+            MainTab.HOME -> navController.navigate(Home, navOptions)
+        }
     }
 
     private val clearStackNavOptions = navOptions {
