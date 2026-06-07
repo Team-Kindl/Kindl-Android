@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetInstalledAppsUseCase @Inject constructor(
     private val appRepository: ForbiddenAppRepository,
 ) {
-    operator fun invoke(): ImmutableList<InstalledAppModel> =
+    suspend operator fun invoke(): ImmutableList<InstalledAppModel> =
         appRepository.getInstalledUserApps().toImmutableList()
 }
