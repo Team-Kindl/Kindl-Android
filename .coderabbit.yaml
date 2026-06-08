@@ -1,0 +1,42 @@
+language: ko-KR
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  review_status: true
+  auto_review:
+    enabled: true
+    drafts: false
+    base_branches:
+      - develop
+      - main
+
+  path_filters:
+    - "!**/*.lock"
+    - "!**/build/**"
+    - "!**/.gradle/**"
+    - "!**/generated/**"
+    - "!**/*.png"
+    - "!**/*.jpg"
+    - "!**/*.webp"
+
+  path_instructions:
+    - path: "**/*.kt"
+      instructions: |
+        Kotlin 코드는 다음 기준으로 리뷰해줘:
+        - Compose 모범 사례 (remember, derivedStateOf, Stable/Immutable)
+        - Hilt 의존성 주입 패턴
+        - 코루틴 사용 (Dispatcher, scope, exception handling)
+        - 네이밍 컨벤션 (PascalCase 클래스, camelCase 함수)
+        - 매직 넘버나 하드코딩된 문자열 지적
+
+    - path: "**/build.gradle.kts"
+      instructions: |
+        Gradle 설정은 다음을 확인해줘:
+        - 의존성 버전이 libs.versions.toml에서 관리되는지
+        - 불필요한 의존성이 없는지
+
+chat:
+  auto_reply: true
