@@ -33,7 +33,8 @@ include(
     ":core:localstorage",
     ":core:permission",
     ":core:service",
-    ":core:work"
+    ":core:work",
+    ":core:coroutine"
 )
 
 // data

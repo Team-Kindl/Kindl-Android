@@ -9,5 +9,9 @@ android {
 }
 
 dependencies {
+    // core
+    implementation(projects.core.coroutine)
+
+    // domain
     implementation(projects.domain.forbidden)
 }

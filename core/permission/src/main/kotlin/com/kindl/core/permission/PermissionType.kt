@@ -5,5 +5,5 @@ enum class PermissionType(val isFocusRequired: Boolean) {
     OVERLAY(isFocusRequired = true),
     BATTERY_OPTIMIZATION(isFocusRequired = true),
     POST_NOTIFICATIONS(isFocusRequired = false),
-    ACCESSIBILITY(isFocusRequired = true),
+    ACCESSIBILITY(isFocusRequired = false),
 }

@@ -15,7 +15,7 @@ import com.kindl.core.designsystem.R
 
 @Composable
 fun UrlImage(
-    url: Any?,
+    url: String?,
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Fit,
     contentDescription: String? = null,

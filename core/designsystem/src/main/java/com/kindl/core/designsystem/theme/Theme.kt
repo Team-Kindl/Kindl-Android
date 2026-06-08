@@ -1,57 +1,92 @@
 package com.kindl.core.designsystem.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+private val KindlDarkColorScheme = darkColorScheme(
+    primary              = KindlCoral500,
+    onPrimary            = White,
+    primaryContainer     = KindlSlate700,
+    onPrimaryContainer   = KindlSlate50,
+    secondary            = KindlSlate700,
+    onSecondary          = White,
+    secondaryContainer   = KindlSlate600,
+    onSecondaryContainer = KindlSlate100,
+    background           = KindlSlate900,
+    onBackground         = KindlSlate50,
+    surface              = KindlSlate800,
+    onSurface            = KindlSlate50,
+    surfaceVariant       = KindlSlate700,
+    onSurfaceVariant     = KindlSlate300,
+    outline              = KindlCoral500,
+    error                = KindlCoral700,
+    onError              = White,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
-
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
+private val KindlLightColorScheme = lightColorScheme(
+    primary              = KindlSlate700,
+    onPrimary            = White,
+    primaryContainer     = KindlSlate100,
+    onPrimaryContainer   = KindlSlate700,
+    secondary            = KindlCoral500,
+    onSecondary          = White,
+    secondaryContainer   = KindlCoral100,
+    onSecondaryContainer = KindlCoral700,
+    background           = White,
+    onBackground         = KindlSlate700,
+    surface              = White,
+    onSurface            = KindlSlate700,
+    surfaceVariant       = KindlSlate50,
+    onSurfaceVariant     = KindlSlate500,
+    outline              = KindlSlate700,
+    error                = KindlCoral700,
+    onError              = White,
 )
 
 @Composable
-fun KindlTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+fun ProvideKindlColorsAndTypography(
+    colors: KindlColors,
+    typography: KindlTypography,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
+    CompositionLocalProvider(
+        localKindlColors provides colors,
+        localKindlTypography provides typography,
         content = content
     )
+}
+
+@Composable
+fun KindlTheme(
+    darkTheme: Boolean = true,
+    content: @Composable () -> Unit,
+) {
+    val kindlColors = if (darkTheme) darkKindlColors else lightKindlColors
+    val colorScheme = if (darkTheme) KindlDarkColorScheme else KindlLightColorScheme
+
+    ProvideKindlColorsAndTypography(
+        colors = kindlColors,
+        typography = defaultKindlTypography,
+    ) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            content = content,
+        )
+    }
+}
+
+object KindlTheme {
+    val colors: KindlColors
+        @Composable
+        @ReadOnlyComposable
+        get() = localKindlColors.current
+
+    val typography: KindlTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = localKindlTypography.current
 }
