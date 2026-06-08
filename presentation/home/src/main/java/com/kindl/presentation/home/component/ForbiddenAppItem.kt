@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -15,7 +16,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
-import com.kindl.core.designsystem.component.UrlImage
 import com.kindl.core.designsystem.theme.KindlTheme
 import com.kindl.presentation.home.model.ForbiddenAppUiModel
 
@@ -24,6 +24,10 @@ internal fun ForbiddenAppItem(
     item: ForbiddenAppUiModel,
     modifier: Modifier = Modifier
 ) {
+    val iconBitmap = remember(item.icon) {
+        item.icon?.toBitmap()?.asImageBitmap()
+    }
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
@@ -32,7 +36,8 @@ internal fun ForbiddenAppItem(
             .size(36.dp)
             .clip(RoundedCornerShape(16.dp))
 
-        item.icon?.toBitmap()?.asImageBitmap()?.let {
+
+        iconBitmap?.let {
             Image(
                 bitmap = it,
                 contentDescription = null,

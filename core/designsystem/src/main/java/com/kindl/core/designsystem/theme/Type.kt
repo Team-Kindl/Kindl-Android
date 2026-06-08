@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.sp
 import com.kindl.core.designsystem.R
 
 object KindlFont {
-    val semiBold = FontFamily(Font(R.font.pretendard_semibold))  // TODO: 실제 폰트 리소스명으로 교체
+    val semiBold = FontFamily(Font(R.font.pretendard_semibold))
     val bold     = FontFamily(Font(R.font.pretendard_bold))
     val regular  = FontFamily(Font(R.font.pretendard_regular))
     val medium   = FontFamily(Font(R.font.pretendard_medium))
