@@ -19,4 +19,6 @@ dependencies {
 
     //presentation
     implementation(projects.presentation.home)
+    implementation(projects.presentation.splash)
+    implementation(projects.presentation.auth)
 }

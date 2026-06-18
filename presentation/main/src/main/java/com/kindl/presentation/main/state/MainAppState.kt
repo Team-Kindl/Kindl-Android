@@ -6,10 +6,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.kindl.auth.navigation.navigateToAuth
 import com.kindl.presentation.home.navigation.Home
 import com.kindl.presentation.main.MainTab
+import com.kindl.splash.navigation.Splash
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +24,7 @@ internal class MainAppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
 ) {
-    val startDestination = Home
+    val startDestination = Splash
 
     /*val isOffline: StateFlow<Boolean> = networkMonitor.isOnline
         .map(Boolean::not)
@@ -96,6 +99,10 @@ internal class MainAppState(
 
     fun navigateUp() {
         navController.navigateUp()
+    }
+
+    fun navigateToAuth() {
+        navController.navigateToAuth(clearStackNavOptions)
     }
 }
 
