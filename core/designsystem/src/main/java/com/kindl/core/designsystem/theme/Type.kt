@@ -15,6 +15,7 @@ object KindlFont {
     val bold     = FontFamily(Font(R.font.pretendard_bold))
     val regular  = FontFamily(Font(R.font.pretendard_regular))
     val medium   = FontFamily(Font(R.font.pretendard_medium))
+    val extraBold = FontFamily(Font(R.font.pretendard_extrabold))
 }
 
 private object TypographyDefaults {
@@ -59,6 +60,17 @@ sealed interface TypographyTokens {
     )
 
     /**
+     * ExtraBold weight title 텍스트
+     */
+    @Immutable
+    data class ExtraBold(
+        val title1: TextStyle,  // 22sp
+        val title2: TextStyle,  // 20sp
+        val title3: TextStyle,  // 16sp
+        val title4: TextStyle,  // 14sp
+    )
+
+    /**
      * Bold weight headline 텍스트
      */
     @Immutable
@@ -74,6 +86,7 @@ sealed interface TypographyTokens {
 data class KindlTypography(
     val regular: TypographyTokens.Regular,
     val semiBold: TypographyTokens.SemiBold,
+    val extraBold: TypographyTokens.ExtraBold,
     val bold: TypographyTokens.Bold,
 )
 
@@ -146,6 +159,36 @@ val defaultKindlTypography = KindlTypography(
         ),
         title4 = TextStyle(
             fontFamily    = KindlFont.semiBold,
+            fontSize      = 14.sp,
+            letterSpacing = TypographyDefaults.SemiBoldLetterSpacing,
+            lineHeight    = TypographyDefaults.SemiBoldLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+    ),
+    extraBold = TypographyTokens.ExtraBold(
+        title1 = TextStyle(
+            fontFamily    = KindlFont.extraBold,
+            fontSize      = 22.sp,
+            letterSpacing = TypographyDefaults.SemiBoldLetterSpacing,
+            lineHeight    = TypographyDefaults.SemiBoldLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        title2 = TextStyle(
+            fontFamily    = KindlFont.extraBold,
+            fontSize      = 20.sp,
+            letterSpacing = TypographyDefaults.SemiBoldLetterSpacing,
+            lineHeight    = TypographyDefaults.SemiBoldLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        title3 = TextStyle(
+            fontFamily    = KindlFont.extraBold,
+            fontSize      = 16.sp,
+            letterSpacing = TypographyDefaults.SemiBoldLetterSpacing,
+            lineHeight    = TypographyDefaults.SemiBoldLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        title4 = TextStyle(
+            fontFamily    = KindlFont.extraBold,
             fontSize      = 14.sp,
             letterSpacing = TypographyDefaults.SemiBoldLetterSpacing,
             lineHeight    = TypographyDefaults.SemiBoldLineHeight,

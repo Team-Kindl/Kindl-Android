@@ -86,6 +86,7 @@ data class KindlColors(
     val sidebarRing: Color,
 
     // Raw palette (필요 시 직접 참조)
+    val white: Color  = White,
     val slate50: Color  = KindlSlate50,
     val slate100: Color = KindlSlate100,
     val slate200: Color = KindlSlate200,
