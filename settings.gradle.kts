@@ -50,5 +50,8 @@ include(
 // presentation
 include(
     ":presentation:main",
-    ":presentation:home"
+    ":presentation:splash",
+    ":presentation:auth",
+    ":presentation:home",
+    ":presentation:onboarding",
 )
