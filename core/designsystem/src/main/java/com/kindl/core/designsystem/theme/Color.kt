@@ -33,6 +33,11 @@ val KindlBlue500  = Color(0xFF339AF0)
 val KindlTeal500  = Color(0xFF20C997)
 val KindlAmber500 = Color(0xFFFCC419)
 
+val KindlEmerald = Color(0xFF22C55E)
+val KindlRed = Color(0xFFEF4444)
+val KindlBlue = Color(0xFF3B82F6)
+val KindlYellow = Color(0xFFFACC15)
+
 val White = Color(0xFFFFFFFF)
 
 @Immutable
@@ -112,6 +117,10 @@ data class KindlColors(
     val blue500: Color  = KindlBlue500,
     val teal500: Color  = KindlTeal500,
     val amber500: Color = KindlAmber500,
+    val emerald: Color  = KindlEmerald,
+    val red: Color      = KindlRed,
+    val blue: Color     = KindlBlue,
+    val yellow: Color   = KindlYellow,
 
     val isDark: Boolean,
 )

@@ -32,6 +32,13 @@ private object TypographyDefaults {
 }
 
 sealed interface TypographyTokens {
+    @Immutable
+    data class Medium(
+        val body18: TextStyle,  // 18sp
+        val body16: TextStyle,  // 16sp
+        val body14: TextStyle,  // 14sp
+        val body12: TextStyle,  // 12sp
+    )
 
     /**
      * Regular weight body 텍스트
@@ -77,13 +84,15 @@ sealed interface TypographyTokens {
     data class Bold(
         val headLine1: TextStyle,  // 22sp
         val headLine2: TextStyle,  // 20sp
-        val headLine3: TextStyle,  // 16sp
-        val headLine4: TextStyle,  // 14sp
+        val headLine3: TextStyle,  // 18sp
+        val headLine4: TextStyle,  // 16sp
+        val headLine5: TextStyle,  // 14sp
     )
 }
 
 @Immutable
 data class KindlTypography(
+    val medium: TypographyTokens.Medium,
     val regular: TypographyTokens.Regular,
     val semiBold: TypographyTokens.SemiBold,
     val extraBold: TypographyTokens.ExtraBold,
@@ -91,6 +100,36 @@ data class KindlTypography(
 )
 
 val defaultKindlTypography = KindlTypography(
+    medium = TypographyTokens.Medium(
+        body18 = TextStyle(
+            fontFamily    = KindlFont.medium,
+            fontSize      = 18.sp,
+            letterSpacing = TypographyDefaults.RegularLetterSpacing,
+            lineHeight    = TypographyDefaults.RegularLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        body16 = TextStyle(
+            fontFamily    = KindlFont.medium,
+            fontSize      = 16.sp,
+            letterSpacing = TypographyDefaults.RegularLetterSpacing,
+            lineHeight    = TypographyDefaults.RegularLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        body14 = TextStyle(
+            fontFamily    = KindlFont.medium,
+            fontSize      = 14.sp,
+            letterSpacing = TypographyDefaults.RegularLetterSpacing,
+            lineHeight    = TypographyDefaults.RegularLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        body12 = TextStyle(
+            fontFamily    = KindlFont.medium,
+            fontSize      = 12.sp,
+            letterSpacing = TypographyDefaults.RegularLetterSpacing,
+            lineHeight    = TypographyDefaults.RegularLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+    ),
     regular = TypographyTokens.Regular(
         body1 = TextStyle(
             fontFamily    = KindlFont.regular,
@@ -212,12 +251,19 @@ val defaultKindlTypography = KindlTypography(
         ),
         headLine3 = TextStyle(
             fontFamily    = KindlFont.bold,
-            fontSize      = 16.sp,
+            fontSize      = 18.sp,
             letterSpacing = TypographyDefaults.BoldLetterSpacing,
             lineHeight    = TypographyDefaults.BoldLineHeight,
             platformStyle = TypographyDefaults.PlatformStyle,
         ),
         headLine4 = TextStyle(
+            fontFamily    = KindlFont.bold,
+            fontSize      = 16.sp,
+            letterSpacing = TypographyDefaults.BoldLetterSpacing,
+            lineHeight    = TypographyDefaults.BoldLineHeight,
+            platformStyle = TypographyDefaults.PlatformStyle,
+        ),
+        headLine5 = TextStyle(
             fontFamily    = KindlFont.bold,
             fontSize      = 14.sp,
             letterSpacing = TypographyDefaults.BoldLetterSpacing,

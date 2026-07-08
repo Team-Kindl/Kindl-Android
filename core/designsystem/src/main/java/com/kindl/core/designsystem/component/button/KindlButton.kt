@@ -26,6 +26,7 @@ fun KindlButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     leadingIcon: ImageVector? = null,
+    suffixIcon: ImageVector? = null,
     containerColor: Color = KindlTheme.colors.coral500,
     contentColor: Color = KindlTheme.colors.white,
     isEnabled: Boolean = true,
@@ -56,6 +57,14 @@ fun KindlButton(
                 style = KindlTheme.typography.semiBold.title3,
                 maxLines = 1
             )
+            if (suffixIcon != null) {
+                Spacer(modifier = Modifier.width(8.dp))
+                Icon(
+                    imageVector = suffixIcon,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp)
+                )
+            }
         }
     }
 }

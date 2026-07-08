@@ -8,7 +8,7 @@ import androidx.compose.ui.geometry.Rect
 object KindlMotion {
     val bouncySpring: FiniteAnimationSpec<Rect> = spring(
         dampingRatio = Spring.DampingRatioLowBouncy,
-        stiffness = Spring.StiffnessMediumLow
+        stiffness = Spring.StiffnessVeryLow
     )
     /*tween (
         delayMillis = 1000,
