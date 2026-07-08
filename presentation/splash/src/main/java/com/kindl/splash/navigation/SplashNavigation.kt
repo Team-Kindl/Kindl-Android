@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.kindl.core.navigation.Route
+import com.kindl.core.navigation.route.Route
 import com.kindl.splash.SplashRoute
 import kotlinx.serialization.Serializable
 

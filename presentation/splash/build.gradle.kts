@@ -10,8 +10,6 @@ android {
 
 dependencies {
     // core
-    implementation(projects.core.common)
-    implementation(projects.core.designsystem)
     implementation(projects.core.network)
     implementation(projects.core.localstorage)
 }
