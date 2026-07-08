@@ -8,7 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.kindl.auth.AuthRoute
-import com.kindl.core.navigation.Route
+import com.kindl.core.navigation.route.Route
 import kotlinx.serialization.Serializable
 
 fun NavController.navigateToAuth(
@@ -20,13 +20,15 @@ fun NavController.navigateToAuth(
 @OptIn(ExperimentalSharedTransitionApi::class)
 fun NavGraphBuilder.authNavGraph(
     paddingValues: PaddingValues,
-    sharedTransitionScope: SharedTransitionScope
+    sharedTransitionScope: SharedTransitionScope,
+    navigateToOnboarding: () -> Unit
 ) {
     composable<Auth> {
         with(sharedTransitionScope) {
             AuthRoute(
                 paddingValues = paddingValues,
-                animatedVisibilityScope = this@composable
+                animatedVisibilityScope = this@composable,
+                navigateToOnboarding = navigateToOnboarding
             )
         }
     }

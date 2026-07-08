@@ -10,6 +10,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.kindl.auth.navigation.navigateToAuth
+import com.kindl.onboarding.navigation.navigateToOnboarding
 import com.kindl.presentation.home.navigation.Home
 import com.kindl.presentation.main.MainTab
 import com.kindl.splash.navigation.Splash
@@ -103,6 +104,10 @@ internal class MainAppState(
 
     fun navigateToAuth() {
         navController.navigateToAuth(clearStackNavOptions)
+    }
+
+    fun navigateToOnboarding() {
+        navController.navigateToOnboarding(clearStackNavOptions)
     }
 }
 

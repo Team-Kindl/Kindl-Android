@@ -5,6 +5,9 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
 import androidx.compose.animation.SharedTransitionScope
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -45,17 +48,33 @@ internal fun SharedTransitionScope.AuthInfoHolder(
                 )
         )
 
-        Text(
-            text = "집중이 습관이 되는 곳,\nKindl을 만나보세요!",
-            style = KindlTheme.typography.bold.headLine1,
-            color = KindlTheme.colors.white
-        )
+        with(animatedVisibilityScope) {
+            Text(
+                text = "집중이 습관이 되는 곳,\nKindl을 만나보세요!",
+                style = KindlTheme.typography.bold.headLine1,
+                color = KindlTheme.colors.white,
+                modifier = Modifier.animateEnterExit(
+                    enter = fadeIn(animationSpec = tween(durationMillis = 700, delayMillis = 300))
+                        + slideInVertically(
+                            initialOffsetY = { it / 3 },
+                            animationSpec = tween(durationMillis = 700, delayMillis = 300)
+                        )
+                )
+            )
 
-        Text(
-            text = "포인트를 걸고 함께 집중하며,\nAI 코치와 꾸준한 습관을 만들어보세요.",
-            style = KindlTheme.typography.regular.body3,
-            color = KindlTheme.colors.white
-        )
+            Text(
+                text = "포인트를 걸고 함께 집중하며,\nAI 코치와 꾸준한 습관을 만들어보세요.",
+                style = KindlTheme.typography.regular.body3,
+                color = KindlTheme.colors.white,
+                modifier = Modifier.animateEnterExit(
+                    enter = fadeIn(animationSpec = tween(durationMillis = 700, delayMillis = 500))
+                        + slideInVertically(
+                            initialOffsetY = { it / 3 },
+                            animationSpec = tween(durationMillis = 700, delayMillis = 500)
+                        )
+                )
+            )
+        }
     }
 }
 

@@ -39,6 +39,7 @@ internal fun TermsBottomSheet(
     onDismiss: () -> Unit,
     onClickTerms: (Terms) -> Unit,
     navigateToTerms: (Terms) -> Unit,
+    navigateToOnboarding: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     KindlBottomSheet(
@@ -48,7 +49,7 @@ internal fun TermsBottomSheet(
         TermsBottomSheetContent(
             onClickTerms = onClickTerms,
             navigateToTerms = navigateToTerms,
-            navigateToOnboarding = onDismiss // Todo: navigate 코드 작성
+            navigateToOnboarding = navigateToOnboarding
         )
     }
 }

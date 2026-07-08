@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.kindl.core.navigation.MainTabRoute
+import com.kindl.core.navigation.route.MainTabRoute
 import com.kindl.presentation.home.HomeRoute
 import kotlinx.serialization.Serializable
 

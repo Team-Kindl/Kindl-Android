@@ -1,8 +1,8 @@
 package com.kindl.presentation.main
 
 import androidx.annotation.DrawableRes
-import com.kindl.core.navigation.MainTabRoute
-import com.kindl.core.navigation.Route
+import com.kindl.core.navigation.route.MainTabRoute
+import com.kindl.core.navigation.route.Route
 import com.kindl.presentation.home.navigation.Home
 
 internal enum class MainTab(

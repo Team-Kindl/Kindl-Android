@@ -35,12 +35,12 @@ import com.kindl.core.designsystem.theme.KindlTheme
 @Composable
 fun SharedTransitionScope.AuthRoute(
     paddingValues: PaddingValues,
-    animatedVisibilityScope: AnimatedVisibilityScope
+    animatedVisibilityScope: AnimatedVisibilityScope,
+    navigateToOnboarding: () -> Unit
 ) {
     var showBottomSheet by remember {
         mutableStateOf(false)
     }
-
 
     AuthScreen(
         paddingValues = paddingValues,
@@ -48,7 +48,8 @@ fun SharedTransitionScope.AuthRoute(
         animatedVisibilityScope = animatedVisibilityScope,
         onKakaoLogin = {
             showBottomSheet = !showBottomSheet
-        }
+        },
+        navigateToOnboarding = navigateToOnboarding // Todo: 로그인 성공 후 -> 모든 terms 동의 후 onboarding으로 이동
     )
 }
 
@@ -59,6 +60,7 @@ private fun SharedTransitionScope.AuthScreen(
     showBottomSheet: Boolean,
     animatedVisibilityScope: AnimatedVisibilityScope,
     onKakaoLogin: () -> Unit,
+    navigateToOnboarding: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -86,9 +88,9 @@ private fun SharedTransitionScope.AuthScreen(
                         initialOffsetY = { fullHeight -> fullHeight / 2 },
                         animationSpec = spring(
                             dampingRatio = Spring.DampingRatioLowBouncy,
-                            stiffness = Spring.StiffnessMediumLow
+                            stiffness = Spring.StiffnessVeryLow
                         )
-                    ) + fadeIn(animationSpec = tween(durationMillis = 1400))
+                    ) + fadeIn(animationSpec = tween(durationMillis = 3000))
                 )
             )
 
@@ -101,9 +103,9 @@ private fun SharedTransitionScope.AuthScreen(
                         initialOffsetY = { fullHeight -> (fullHeight / 2) + 100 },
                         animationSpec = spring(
                             dampingRatio = Spring.DampingRatioLowBouncy,
-                            stiffness = Spring.StiffnessMediumLow
+                            stiffness = Spring.StiffnessVeryLow
                         )
-                    ) + fadeIn(animationSpec = tween(durationMillis = 1400))
+                    ) + fadeIn(animationSpec = tween(durationMillis = 3000))
                 )
             )
         }
@@ -115,7 +117,8 @@ private fun SharedTransitionScope.AuthScreen(
         TermsBottomSheet(
             onDismiss = onKakaoLogin,
             onClickTerms = {},
-            navigateToTerms = {}
+            navigateToTerms = {},
+            navigateToOnboarding = navigateToOnboarding
         )
     }
 }

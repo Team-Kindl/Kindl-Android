@@ -25,6 +25,7 @@ import com.kindl.core.common.model.DialogTrigger
 import com.kindl.core.common.model.GlobalUiEventHolder
 import com.kindl.core.common.model.SnackbarState
 import com.kindl.core.common.trigger.LocalGlobalUiEventTrigger
+import com.kindl.onboarding.navigation.onboardingNavGraph
 import com.kindl.presentation.home.navigation.homeNavGraph
 import com.kindl.presentation.main.component.MainBottomBar
 import com.kindl.presentation.main.state.MainAppState
@@ -34,6 +35,7 @@ import com.kindl.splash.navigation.splashNavGraph
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
@@ -72,7 +74,7 @@ internal fun MainScreen(
                         currentSnackbarState = null
                     }
                 }
-                delay(2000L)
+                delay(2000L.milliseconds)
                 job.cancel()
             }
         }
@@ -146,7 +148,12 @@ internal fun MainScreen(
 
                     authNavGraph(
                         paddingValues = paddingValues,
-                        sharedTransitionScope = this@SharedTransitionLayout
+                        sharedTransitionScope = this@SharedTransitionLayout,
+                        navigateToOnboarding = appState::navigateToOnboarding
+                    )
+
+                    onboardingNavGraph(
+                        paddingValues = paddingValues,
                     )
 
                     homeNavGraph(
