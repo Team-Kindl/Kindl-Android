@@ -1,6 +1,8 @@
 package com.kindl.buildlogic
 
+import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.LibraryExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
@@ -18,12 +20,11 @@ import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginE
  * 명시적으로 선언해서 의도를 명확히 하는 게 좋을듯
  */
 internal fun Project.configureAndroidCompose(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension
 ) {
-    commonExtension.apply {
-        buildFeatures {
-            compose = true
-        }
+    when (commonExtension) {
+        is ApplicationExtension -> commonExtension.buildFeatures { compose = true }
+        is LibraryExtension -> commonExtension.buildFeatures { compose = true }
     }
 
     extensions.getByType<ComposeCompilerGradlePluginExtension>().apply {

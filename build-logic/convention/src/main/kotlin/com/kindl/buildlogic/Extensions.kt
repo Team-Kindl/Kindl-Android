@@ -24,8 +24,8 @@ val Project.libs: VersionCatalog
  *
  * Library → Application 순으로 시도하고 둘 다 없으면 에러 출력
  */
-val Project.androidExtension: CommonExtension<*, *, *, *, *, *>
-    get() = runCatching { extensions.getByType<LibraryExtension>() }
-        .recoverCatching { extensions.getByType<ApplicationExtension>() }
+val Project.androidExtension: CommonExtension
+    get() = runCatching { extensions.getByType<LibraryExtension>() as CommonExtension }
+        .recoverCatching { extensions.getByType<ApplicationExtension>() as CommonExtension }
         .onFailure { println("Could not find Library or Application extension") }
         .getOrThrow()

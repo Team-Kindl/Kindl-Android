@@ -10,7 +10,7 @@ import java.util.Properties
  * Build Type을 세팅 헬퍼 - ApplicationExtension, LibraryExtension 공통
  * */
 fun Project.configureBuildTypes(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) {
     val properties = Properties().apply {
         // 루트 디렉토리의 local.properties 파일을 읽어옵니다

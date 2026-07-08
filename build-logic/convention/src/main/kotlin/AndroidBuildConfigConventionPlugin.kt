@@ -17,7 +17,7 @@ class AndroidBuildConfigConventionPlugin : Plugin<Project> {
                 ?: extensions.findByType(LibraryExtension::class.java)
                 ?: error("AndroidBuildConfigConventionPlugin은 안드로이드 애플리케이션 또는 라이브러리 플러그인이 적용된 이후에만 사용할 수 있습니다.")
 
-            configureBuildTypes(extension as CommonExtension<*, *, *, *, *, *>)
+            configureBuildTypes(extension as CommonExtension)
         }
     }
 }

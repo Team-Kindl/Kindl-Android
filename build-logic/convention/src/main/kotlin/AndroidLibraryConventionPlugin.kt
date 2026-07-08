@@ -12,7 +12,6 @@ import org.gradle.kotlin.dsl.configure
  *
  * 적용되는 설정:
  * - com.android.library
- * - org.jetbrains.kotlin.android
  * - compileSdk, minSdk, JVM 11 (configureKotlinAndroid 헬퍼)
  */
 class AndroidLibraryConventionPlugin : Plugin<Project> {
@@ -20,7 +19,6 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.library")
-                apply("org.jetbrains.kotlin.android")
             }
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)

@@ -5,6 +5,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
 
+
 /**
  * app 모듈 전용 Convention Plugin.
  * 프로젝트에서 오직 :app 모듈에서만 사용.
@@ -16,7 +17,6 @@ import org.gradle.kotlin.dsl.configure
  *
  * 적용되는 설정:
  * - com.android.application
- * - org.jetbrains.kotlin.android
  * - org.jetbrains.kotlin.plugin.compose
  * - compileSdk, minSdk, JVM 11 (configureKotlinAndroid 헬퍼)
  */
@@ -25,7 +25,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
-                apply("org.jetbrains.kotlin.android")
                 apply("org.jetbrains.kotlin.plugin.compose")
                 apply("kindl.hilt")
             }
