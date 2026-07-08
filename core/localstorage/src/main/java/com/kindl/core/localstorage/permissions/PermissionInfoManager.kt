@@ -1,4 +1,4 @@
-package com.focpet.core.localstorage.permissions
+package com.kindl.core.localstorage.permissions
 
 import kotlinx.coroutines.flow.Flow
 

@@ -1,4 +1,4 @@
-package com.focpet.core.localstorage.constant
+package com.kindl.core.localstorage.constant
 
 import androidx.datastore.preferences.core.intPreferencesKey
 

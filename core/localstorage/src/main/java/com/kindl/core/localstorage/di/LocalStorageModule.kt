@@ -1,12 +1,12 @@
-package com.focpet.core.localstorage.di
+package com.kindl.core.localstorage.di
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import com.focpet.core.localstorage.constant.DataStoreConstant.DATA_STORE_NAME
-import com.focpet.core.localstorage.permissions.PermissionInfoManager
-import com.focpet.core.localstorage.permissions.PermissionInfoManagerImpl
+import com.kindl.core.localstorage.constant.DataStoreConstant.DATA_STORE_NAME
+import com.kindl.core.localstorage.permissions.PermissionInfoManager
+import com.kindl.core.localstorage.permissions.PermissionInfoManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

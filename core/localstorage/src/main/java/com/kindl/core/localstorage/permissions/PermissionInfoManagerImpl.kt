@@ -1,9 +1,9 @@
-package com.focpet.core.localstorage.permissions
+package com.kindl.core.localstorage.permissions
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.Preferences
-import com.focpet.core.localstorage.constant.DataStoreConstant.KEY_NOTIFICATION_DENIED_COUNT
+import com.kindl.core.localstorage.constant.DataStoreConstant.KEY_NOTIFICATION_DENIED_COUNT
 import com.kindl.core.common.util.suspendRunCatching
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
