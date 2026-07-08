@@ -15,6 +15,5 @@ dependencies {
     implementation(platform(libs.okhttp.bom))
     implementation(libs.bundles.okhttp)
     implementation(libs.bundles.retrofit)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.timber)
 }

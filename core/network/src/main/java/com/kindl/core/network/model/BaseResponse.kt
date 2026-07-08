@@ -1,7 +1,4 @@
-package com.focpet.core.network.model
-
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+package com.kindl.core.network.model
 
 /*
 @Serializable
